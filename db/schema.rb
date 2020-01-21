@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_21_192150) do
+ActiveRecord::Schema.define(version: 2020_01_21_224155) do
 
   create_table "art_dealers", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_192150) do
     t.integer "work_of_gif_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "win"
   end
 
   create_table "work_of_gifs", force: :cascade do |t|
