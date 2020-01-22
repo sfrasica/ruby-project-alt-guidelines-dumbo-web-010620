@@ -16,5 +16,7 @@ captain_falcon = WorkOfGif.create(name: "Falcon! PAWNNNNNNNNNNCH!")
 
 
 #Bid instances  amount,  art_dealer_id,  work_of_gif_id,
-Bid.create(amount: 100, art_dealer_id: lei.id, work_of_gif_id: pennywise.id)
-
+Bid.create(amount: 100, art_dealer_id: lei.id, work_of_gif_id: pennywise.id, win: true)
+Bid.create(amount: 100, art_dealer_id: lei.id, work_of_gif_id: baby_yoda.id, win: false)
+Bid.create(amount: 100, art_dealer_id: lei.id, work_of_gif_id: darth_vader.id, win: false)
+Bid.create(amount: 100, art_dealer_id: lei.id, work_of_gif_id: captain_falcon.id, win: true)
