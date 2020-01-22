@@ -1,5 +1,6 @@
 
 class CommandLineInterface
+
 #added last night
 # attr_accessor :prompt, :user
 
@@ -31,3 +32,4 @@ class CommandLineInterface
 
 
 end
+
