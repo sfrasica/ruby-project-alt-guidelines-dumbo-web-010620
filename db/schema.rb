@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_01_22_172804) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "counterfeit"
   end
 
 end
