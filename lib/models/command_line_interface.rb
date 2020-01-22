@@ -37,7 +37,7 @@ class CommandLineInterface
         # user.reload <- most likely including later
         prompt.select("Welcome prospective ArtDealer! What strikes your fancy?") do |menu|
             menu.choice "Visit the GifShoppe", -> {WorkOfGif.visit_gif_shoppe}
-            menu.choice "View your bids", -> {binding.pry}#self.art_dealer.view_bids}
+            menu.choice "View your bids", -> {lei.view_bids}
             menu.choice "Peruse your GifGallery"
         end
     end

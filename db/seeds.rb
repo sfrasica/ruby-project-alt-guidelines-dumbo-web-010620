@@ -9,7 +9,7 @@ jezebel = ArtDealer.create(name: "Jezebel")
 steven = ArtDealer.create(name: "Steven")
 
 #WorkOfGif instances
-pennywise = WorkOfGif.create(name: "Pennywise Dancing")
+pennywise = WorkOfGif.create(name: "Pennywise Dancing", available: true, stolen: true)
 baby_yoda = WorkOfGif.create(name: "Baby yoda crying")
 darth_vader = WorkOfGif.create(name: "Darth Vader Lightsaber")
 captain_falcon = WorkOfGif.create(name: "Falcon! PAWNNNNNNNNNNCH!")

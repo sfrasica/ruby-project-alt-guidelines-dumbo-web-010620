@@ -30,6 +30,8 @@ class ArtDealer < ActiveRecord::Base
           puts WorkOfGif.find(bid.work_of_gif_id).name
       end
     end
+
+    
   
 
 
