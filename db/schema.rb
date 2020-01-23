@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_22_225707) do
+ActiveRecord::Schema.define(version: 2020_01_23_184157) do
 
   create_table "art_dealers", force: :cascade do |t|
     t.string "name"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_01_22_225707) do
     t.boolean "counterfeit"
     t.boolean "available"
     t.boolean "stolen"
+    t.integer "starting_bid"
   end
 
 end

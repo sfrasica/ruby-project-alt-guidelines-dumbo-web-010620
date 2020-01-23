@@ -2,12 +2,14 @@ require "tty-prompt"
 ##
 
 class CommandLineInterface
-    attr_accessor :prompt, :user, :art_dealer, :ad, :pw
+    attr_accessor :prompt, :user, :art_dealer, :ad, :pw, :sw, :dv
 
     def initialize()
         @prompt = TTY::Prompt.new
         @ad = ArtDealer.create(name: "user")
         @pw = WorkOfGif.all.first
+        @sw = WorkOfGif.all.second
+        @dv = WorkOfGif.all.third
     end
 
     def welcome
@@ -35,7 +37,7 @@ class CommandLineInterface
     end
 
     def main_menu
-        get_seeds
+    
         system "clear" # Clears the page user is on, like going to the next screen
         # user.reload <- most likely including later
         prompt.select("Welcome prospective ArtDealer! What strikes your fancy?") do |menu|
@@ -73,29 +75,7 @@ class CommandLineInterface
     #   puts ad.bids.find_by(wog.id)
     # end
 # These should probably go into the gif_shoppe rb file
-    def get_seeds
-        ArtDealer.destroy_all
-        Bid.destroy_all
-        WorkOfGif.destroy_all
-
-        jezebel = ArtDealer.create(name: "Jezebel")
-        steven = ArtDealer.create(name: "Steven")
-
-
-        #WorkOfGif instances
-        pennywise = WorkOfGif.create(name: "Pennywise Dancing")
-        baby_yoda = WorkOfGif.create(name: "Baby yoda crying")
-        darth_vader = WorkOfGif.create(name: "Darth Vader Lightsaber")
-        captain_falcon = WorkOfGif.create(name: "Falcon! PAWNNNNNNNNNNCH!")
-
-
-        #Bid instances  amount,  art_dealer_id,  work_of_gif_id,
-        Bid.create(amount: 100, art_dealer_id: ad.id, work_of_gif_id: pennywise.id, win: true)
-        Bid.create(amount: 100, art_dealer_id: ad.id, work_of_gif_id: baby_yoda.id, win: false)
-        Bid.create(amount: 100, art_dealer_id: ad.id, work_of_gif_id: darth_vader.id, win: false)
-        Bid.create(amount: 100, art_dealer_id: ad.id, work_of_gif_id: captain_falcon.id, win: true)
-    end
-
+    
     def exit_the_gif_shoppe
       puts "Thanks for visiting the GifShoppe!"
       exit
