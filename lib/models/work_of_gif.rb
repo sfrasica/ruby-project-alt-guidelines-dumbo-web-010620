@@ -3,7 +3,7 @@ class WorkOfGif < ActiveRecord::Base
     has_many :art_dealers, through: :bids
 
     def self.visit_gif_shoppe
-        WorkOfGif.all.map {|workofgif| puts workofgif.name} #can view all available WOG 
+        WorkOfGif.all.map {|workofgif| puts workofgif.name} #can view all available WOG
     end
 
     def change_availability
@@ -15,9 +15,11 @@ class WorkOfGif < ActiveRecord::Base
     def stolen?
         if self.stolen == true
             change_availability
-        #if the wog's stolen column = true, change availability to false. 
+        #if the wog's stolen column = true, change availability to false.
         #Also will be not be able to view in ArtDealer's gifgallery
         #if wog's stolen column = false, it was not stolen, still available
         end
+
+        # call destroy on WOG instance
     end
 end
