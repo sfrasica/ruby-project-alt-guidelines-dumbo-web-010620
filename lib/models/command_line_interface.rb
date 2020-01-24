@@ -2,17 +2,22 @@ require "tty-prompt"
 ##
 
 class CommandLineInterface
-    attr_accessor :prompt, :user, :art_dealer, :ad, :pw, :sw, :dv
+    attr_accessor :prompt, :user, :art_dealer, :ad, :pwf, :sw, :dv, :pw, :dvc, :pika, :lk, :dad
 
     def initialize()
         @prompt = TTY::Prompt.new
         @ad = ArtDealer.create(name: "user")
-        @pw = WorkOfGif.all.first
-        @sw = WorkOfGif.all.second
-        @dv = WorkOfGif.all.third
+        @pwf = WorkOfGif.all.find_by(name: "Pennywise Float")
+        @sw = WorkOfGif.all.find_by(name: "Squidward dancing 🤢")
+        @dvc = WorkOfGif.all.find_by(name: "Darth vader choke")
+        @pw = WorkOfGif.all.find_by(name: "Pennywise says hi!")
+        @pika = WorkOfGif.all.find_by(name: "Pika Pika ⚡️")
+        @lk = WorkOfGif.all.find_by(name: "Zelda from Link")
+        @dad = WorkOfGif.all.find_by(name: "Darth Dad")
     end
 
     def welcome
+        system "clear"
         puts "************** Welcome to the GifShoppe! ************************"
         puts "World renowned one stop shop for all things GIF!"
         answer = self.prompt.select("Have you been to the GifShoppe in a past life?", [
@@ -28,9 +33,10 @@ class CommandLineInterface
         case choice
         when "No"
             puts "Excellent, we hope you enjoy this lovely experience."
-
+            sleep (1)
         when "Yes"
             puts "Welcome back."
+            sleep (1)
         end
 
         main_menu

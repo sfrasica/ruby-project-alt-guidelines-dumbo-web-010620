@@ -3,17 +3,16 @@ ArtDealer.destroy_all
 Bid.destroy_all
 WorkOfGif.destroy_all
 
-#ArtDealer instances
-lei = ArtDealer.create(name: "Lei")
-jezebel = ArtDealer.create(name: "Jezebel")
-steven = ArtDealer.create(name: "Steven")
 
 #WorkOfGif instances
-pennywise = WorkOfGif.create(name: "Pennywise Float", available: true, stolen: false, starting_bid: 7000, jezebel: false, won: true)
-squidward = WorkOfGif.create(name: "Squidward Dancing", available: true, stolen: true, starting_bid: 20, won: false)
-darth_vader = WorkOfGif.create(name: "Darth Vader Choke", available: true, stolen: false, starting_bid: 5000, won: false)
-# captain_falcon = WorkOfGif.create(name: "Falcon! PAWNNNNNNNNNNCH!")
-
+penny_balloon = WorkOfGif.create(name: "Pennywise Float", available: true, stolen: false, starting_bid: 7_000, jezebel: false)
+squidward = WorkOfGif.create(name: "Squidward dancing 🤢", available: true, stolen: false, starting_bid: 200_000, jezebel: false)
+darth_vader = WorkOfGif.create(name: "Darth vader choke", available: true, stolen: false, starting_bid: 5_000, jezebel: true)
+penywave = WorkOfGif.create(name: "Pennywise says hi!", available: true, stolen: false, starting_bid: 6_500, jezebel: false)
+pika = WorkOfGif.create(name: "Pika Pika ⚡️", available: true, stolen: true, starting_bid: 60_000, jezebel: false)
+lank = WorkOfGif.create(name: "Zelda from Link", available: true, stolen: false, starting_bid: 1337, jezebel: false)
+dad = WorkOfGif.create(name: "Darth Dad", available: true, stolen: false, starting_bid: 10_000, jezebel: false)
+persona = WorkOfGif.create(name: "Mask off", available: true, stolen: false, starting_bid: 10_000, jezebel: true)
 
 #Bid instances  amount,  art_dealer_id,  work_of_gif_id,
 # Bid.create(amount: 100, art_dealer_id: lei.id, work_of_gif_id: pennywise.id, win: true)

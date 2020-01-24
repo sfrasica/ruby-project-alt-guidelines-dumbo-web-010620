@@ -1,4 +1,14 @@
 require_relative 'work_of_gif'
+require_relative 'gifs/pika'
+require_relative 'gifs/squidward'
+require_relative 'gifs/pennywise'
+require_relative 'gifs/pennywave'
+require_relative 'gifs/lank_swing'
+require_relative 'gifs/darthdad'
+require_relative 'gifs/darthchoke'
+
+
+
 # Placeholder for methods in progress
 
 
@@ -6,15 +16,24 @@ require_relative 'work_of_gif'
 # def visit_gif_shoppe
 #     WorkOfGif.all.map {|workofgif| puts workofgif.name} #can view all available WOG
 # end
-pw = WorkOfGif.all.first
-sw = WorkOfGif.all.second
-dv = WorkOfGif.all.third
+# pwf = WorkOfGif.all.find_by(name: "Pennywise Float")
+# sw = WorkOfGif.all.find_by(name: "Squidward dancing 🤢")
+# dvc = WorkOfGif.all.find_by(name: "Darth vader choke")
+# pw = WorkOfGif.all.find_by(name: "Pennywise says hi!")
+# pika = WorkOfGif.all.find_by(name: "Pika Pika ⚡️")
+# lk = WorkOfGif.all.find_by(name: "Zelda from Link")
+# dad = WorkOfGif.all.find_by(name: "Darth Dad")
+
 # captain_falcon = WorkOfGif.create(name: "Falcon! PAWNNNNNNNNNNCH!")
 def gif_shoppe
   prompt.select("Which Gif are you interested in?") do |menu|
-      menu.choice "Pennywise", -> {pennywise}
-      menu.choice "Squidward", -> {squidward}
-      menu.choice "darth_vader", -> {darth_vader}
+      menu.choice "Pennywise Float", -> {pennywise}
+      menu.choice "Squidward dancing 🤢", -> {squidward}
+      menu.choice "Darth vader choke", -> {darth_vader}
+      menu.choice "Pennywise says hi!", -> {penny_wave}
+      menu.choice "Pika Pika ⚡️", -> {pikachu}
+      menu.choice "Zelda from Link", -> {lank}
+      menu.choice "Darth Dad", -> {darth_dad}
       menu.choice "Exit", -> {ad.view_bids}
   end
 end
@@ -32,7 +51,7 @@ def bid_sequence(wog)
                                             # from gets.chomp
                                             #and the wog instance (pennywise)
   # sleep(1.5)
-  op_bid = bid_amount + 1000
+  op_bid = bid_amount + rand(5000)
   puts "You've been outbid! The new winning bid is #{op_bid}." # we need the method bc we want our bid to surpass bid + 100
 
   # sleep(1.5)
@@ -41,7 +60,7 @@ def bid_sequence(wog)
   bid_amount = bid_check(bid_amount, op_bid) #This should stop user's bid until it's greater than "new winning bid"
   initial_ad_bid.update(amount: bid_amount) #initial_ad_bid amount is now equal to user's next bid input
 
-  op_bid = bid_amount + 1000
+  op_bid = bid_amount + rand(5000)
 
   # sleep(1.5)
   puts "You've been outbid again! The new winning bid is #{op_bid}."
@@ -50,20 +69,24 @@ def bid_sequence(wog)
   bid_amount = gets.chomp.to_i
   bid_amount =  bid_check(bid_amount, op_bid)
   initial_ad_bid.update(amount: bid_amount)
-
-
+  
+  
   if wog.jezebel == true
     puts "You've lost to Jezebel, notorious gif enthusiast. Give up, she has more money than you. She didn't even want the gif."
+  elsif wog.stolen == true
+    Bid.all.find_by(work_of_gif: wog.id).destroy
+    puts "cat burg"
   else
-   puts "You've won! Your new workofgif will be available to view in your gifgallery."
-   wog.you_won
-   @ad.bids.map {|bid|
-     bid.win = true
-     bid.save
-   }
+    puts "You've won! Your new workofgif will be available to view in your gifgallery."
+    sleep(1.0)
+    wog.you_won
+    @ad.bids.map {|bid|
+      bid.win = true
+      bid.save
+    }
   end
-
   wog.stolen?
+
 end
 
 # checks if your bid is greater than the opposing bid
@@ -82,12 +105,11 @@ end
 
 
 def pennywise
-  puts "Pennywise the dancing clown!"
-  puts "starting bid: #{pw.starting_bid}"
-
+  Pennywise.go
   # pennygif method
-
+  
   #bid and exit options
+  puts "starting bid: #{pw.starting_bid}"
 
   prompt.select("Do you feel lucky?") do |menu|
       menu.choice "Bid", -> {bid_sequence(pw)}
@@ -97,11 +119,10 @@ def pennywise
 end
 
 def squidward
-  puts "Squidward dancing"
-  puts "starting bid: #{sw.starting_bid}"
-
+  Squidward.go
   # pennygif method
-
+  
+  puts "starting bid: #{sw.starting_bid}"
   #bid and exit options
 
   prompt.select("Do you feel lucky?") do |menu|
@@ -112,15 +133,70 @@ def squidward
 end
 
 def darth_vader
-  puts "Darth dad into choking!"
-  puts "starting bid: #{dv.starting_bid}"
-
+  Vaderchoke.go
   # pennygif method
-
+  
+  puts "starting bid: #{dvc.starting_bid}"
   #bid and exit options
 
   prompt.select("Do you feel lucky?") do |menu|
-      menu.choice "Bid", -> {bid_sequence(dv)}
+      menu.choice "Bid", -> {bid_sequence(dvc)}
+      menu.choice "Exit", -> {ad.view_bids}
+  end
+
+end
+
+def penny_wave
+  Pennywave.go
+  # pennygif method
+  
+  puts "starting bid: #{pw.starting_bid}"
+  #bid and exit options
+
+  prompt.select("Do you feel lucky?") do |menu|
+      menu.choice "Bid", -> {bid_sequence(pw)}
+      menu.choice "Exit", -> {ad.view_bids}
+  end
+
+end
+
+def pikachu
+  Pikabounce.go
+  # pennygif method
+  
+  puts "starting bid: #{pika.starting_bid}"
+  #bid and exit options
+
+  prompt.select("Do you feel lucky?") do |menu|
+      menu.choice "Bid", -> {bid_sequence(pika)}
+      menu.choice "Exit", -> {ad.view_bids}
+  end
+
+end
+
+def lank
+  Lankswing.go
+  # pennygif method
+  
+  puts "starting bid: #{lk.starting_bid}"
+  #bid and exit options
+
+  prompt.select("Do you feel lucky?") do |menu|
+      menu.choice "Bid", -> {bid_sequence(lk)}
+      menu.choice "Exit", -> {ad.view_bids}
+  end
+
+end
+
+def darth_dad
+  Darthdad.go
+  # pennygif method
+  
+  puts "starting bid: #{dad.starting_bid}"
+  #bid and exit options
+
+  prompt.select("Do you feel lucky?") do |menu|
+      menu.choice "Bid", -> {bid_sequence(dad)}
       menu.choice "Exit", -> {ad.view_bids}
   end
 
