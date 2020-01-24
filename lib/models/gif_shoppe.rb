@@ -7,9 +7,14 @@ require_relative 'work_of_gif'
 #     WorkOfGif.all.map {|workofgif| puts workofgif.name} #can view all available WOG
 # end
 pw = WorkOfGif.all.first
+sw = WorkOfGif.all.second
+dv = WorkOfGif.all.third
+# captain_falcon = WorkOfGif.create(name: "Falcon! PAWNNNNNNNNNNCH!")
 def gif_shoppe
   prompt.select("Which Gif are you interested in?") do |menu|
       menu.choice "Pennywise", -> {pennywise}
+      menu.choice "Squidward", -> {squidward}
+      menu.choice "darth_vader", -> {darth_vader}
       menu.choice "Exit", -> {ad.view_bids}
   end
 end
@@ -17,13 +22,13 @@ end
 def bid_sequence(wog)
   puts "Starting bid is: #{wog.starting_bid}"
   puts "How much would you like to bid?"
-  
+
   bid_amount = gets.chomp.to_i
   #bid_check(bid, wog.starting_bid)
 
   bid_amount = bid_check(bid_amount, wog.starting_bid)
-  
-  initial_ad_bid = ad.create_bid(bid_amount, wog) #initial_ad_bid is being created using the user's bid amount(which is the first bid the user inputs) 
+# changed @ad back to ad line 26
+  initial_ad_bid = ad.create_bid(bid_amount, wog) #initial_ad_bid is being created using the user's bid amount(which is the first bid the user inputs)
                                             # from gets.chomp
                                             #and the wog instance (pennywise)
   # sleep(1.5)
@@ -35,9 +40,9 @@ def bid_sequence(wog)
   bid_amount = gets.chomp.to_i
   bid_amount = bid_check(bid_amount, op_bid) #This should stop user's bid until it's greater than "new winning bid"
   initial_ad_bid.update(amount: bid_amount) #initial_ad_bid amount is now equal to user's next bid input
-  
+
   op_bid = bid_amount + 1000
-  
+
   # sleep(1.5)
   puts "You've been outbid again! The new winning bid is #{op_bid}."
   # sleep(1.5)
@@ -45,12 +50,20 @@ def bid_sequence(wog)
   bid_amount = gets.chomp.to_i
   bid_amount =  bid_check(bid_amount, op_bid)
   initial_ad_bid.update(amount: bid_amount)
-  puts "You've won! Your new workofgif will be available to view in your gifgallery."
-# if wog.jb == true
-#   puts "you lose"
-# else 
-#  puts "congrats"
-# end
+
+
+  if wog.jezebel == true
+    puts "You've lost to Jezebel, notorious gif enthusiast. Give up, she has more money than you. She didn't even want the gif."
+  else
+   puts "You've won! Your new workofgif will be available to view in your gifgallery."
+   wog.you_won
+   @ad.bids.map {|bid|
+     bid.win = true
+     bid.save
+   }
+  end
+
+  wog.stolen?
 end
 
 # checks if your bid is greater than the opposing bid
@@ -61,7 +74,7 @@ def bid_check(bid, opposing_bid)
 
     puts "What's your next bid?"
     bid = gets.chomp.to_i
-    
+
   end
   bid
   # binding.pry
@@ -78,6 +91,36 @@ def pennywise
 
   prompt.select("Do you feel lucky?") do |menu|
       menu.choice "Bid", -> {bid_sequence(pw)}
+      menu.choice "Exit", -> {ad.view_bids}
+  end
+
+end
+
+def squidward
+  puts "Squidward dancing"
+  puts "starting bid: #{sw.starting_bid}"
+
+  # pennygif method
+
+  #bid and exit options
+
+  prompt.select("Do you feel lucky?") do |menu|
+      menu.choice "Bid", -> {bid_sequence(sw)}
+      menu.choice "Exit", -> {ad.view_bids}
+  end
+
+end
+
+def darth_vader
+  puts "Darth dad into choking!"
+  puts "starting bid: #{dv.starting_bid}"
+
+  # pennygif method
+
+  #bid and exit options
+
+  prompt.select("Do you feel lucky?") do |menu|
+      menu.choice "Bid", -> {bid_sequence(dv)}
       menu.choice "Exit", -> {ad.view_bids}
   end
 

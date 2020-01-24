@@ -9,9 +9,9 @@ jezebel = ArtDealer.create(name: "Jezebel")
 steven = ArtDealer.create(name: "Steven")
 
 #WorkOfGif instances
-pennywise = WorkOfGif.create(name: "Pennywise Float", available: true, stolen: false, starting_bid: 7000)
-# squidward = WorkOfGif.create(name: "Squidward Dancing", available: true, stolen: true, starting_bid: 20)
-# darth_vader = WorkOfGif.create(name: "Darth Vader Choke", available: true, stolen: false, starting_bid: 5000)
+pennywise = WorkOfGif.create(name: "Pennywise Float", available: true, stolen: false, starting_bid: 7000, jezebel: false, won: true)
+squidward = WorkOfGif.create(name: "Squidward Dancing", available: true, stolen: true, starting_bid: 20, won: false)
+darth_vader = WorkOfGif.create(name: "Darth Vader Choke", available: true, stolen: false, starting_bid: 5000, won: false)
 # captain_falcon = WorkOfGif.create(name: "Falcon! PAWNNNNNNNNNNCH!")
 
 

@@ -37,7 +37,7 @@ class CommandLineInterface
     end
 
     def main_menu
-    
+
         system "clear" # Clears the page user is on, like going to the next screen
         # user.reload <- most likely including later
         prompt.select("Welcome prospective ArtDealer! What strikes your fancy?") do |menu|
@@ -75,7 +75,7 @@ class CommandLineInterface
     #   puts ad.bids.find_by(wog.id)
     # end
 # These should probably go into the gif_shoppe rb file
-    
+
     def exit_the_gif_shoppe
       puts "Thanks for visiting the GifShoppe!"
       exit

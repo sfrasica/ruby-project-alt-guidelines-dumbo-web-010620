@@ -43,7 +43,7 @@ class ArtDealer < ActiveRecord::Base
 
     def create_bid(amount, wog)
       # Take an argument of desired bid amount and WorkOfGif
-      bids.create(amount: amount, art_dealer_id: self.id, work_of_gif_id: wog)
+      bids.create(amount: amount, art_dealer_id: self.id, work_of_gif_id: wog.id)
     end
 
 
